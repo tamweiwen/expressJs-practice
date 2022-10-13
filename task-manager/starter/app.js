@@ -5,20 +5,12 @@ const connectDB = require("./db/connect"); //import connectDB config
 require("dotenv").config(); //import .env
 
 //middleware
+app.use(express.static("./public")); //import static files in public folder
 app.use(express.json());
 
 //routes
-app.get("/hello", (req, res) => {
-  res.send("Task Manager App");
-});
 
 app.use("/api/v1/tasks", tasks); //use tasks routers
-
-// app.get('/api/v1/tasks')         - get all the tasks
-// app.post('/api/v1/tasks')        - create a new task
-// app.get('/api/v1/tasks/:id')     - get a single task
-// app.patch('/api/v1/tasks/:id')   - update task
-// app.delete('/api/v1/tasks:id')   - delete task
 
 const port = 3000;
 
