@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks"); //import tasks routers
 const connectDB = require("./db/connect"); //import connectDB config
+require("dotenv").config(); //import .env
 
 //middleware
 app.use(express.json());
@@ -24,7 +25,7 @@ const port = 3000;
 //server wont start if connection to database fails
 const start = async () => {
   try {
-    await connectDB();
+    await connectDB(process.env.MONGO_URI);
     app.listen(
       port,
       console.log(
